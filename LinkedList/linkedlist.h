@@ -69,9 +69,9 @@ class LinkedList
         std::cout << '\n';
     }
 
-    void append(T value)
+    void append(T val)
     {
-        Node* node{new Node{value}};
+        Node* node{new Node{val}};
         if (m_head)
         {
             m_tail->next = node;
@@ -94,13 +94,11 @@ class LinkedList
         {
             Node* temp{m_head};
             Node* pre{m_head};
-
             while (temp->next)
             {
                 pre = temp;
                 temp = temp->next;
             }
-
             m_tail = pre;
             m_tail->next = nullptr;
             delete temp;
@@ -113,6 +111,22 @@ class LinkedList
         }
 
         m_length--;
+    }
+
+    void prepend(T val)
+    {
+        Node* node{new Node{val}};
+        if (!m_head)
+        {
+            m_head = node;
+            m_tail = node;
+        }
+        else
+        {
+            node->next = m_head;
+            m_head = node;
+        }
+        m_length++;
     }
 };
 
