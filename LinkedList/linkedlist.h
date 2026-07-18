@@ -29,19 +29,7 @@ class LinkedList
     LinkedList(std::initializer_list<T> list)
     {
         for (const auto& val : list)
-        {
-            if (m_tail)
-            {
-                m_tail->next = new Node{val};
-                m_tail = m_tail->next;
-            }
-            else
-            {
-                m_head = new Node{val};
-                m_tail = m_head;
-            }
-            ++m_length;
-        }
+            append(val);
     }
 
     ~LinkedList()
@@ -79,6 +67,22 @@ class LinkedList
             temp = temp->next;
         }
         std::cout << '\n';
+    }
+
+    void append(T value)
+    {
+        Node* node{new Node{value}};
+        if (m_head)
+        {
+            m_tail->next = node;
+            m_tail = node;
+        }
+        else
+        {
+            m_head = node;
+            m_tail = node;
+        }
+        m_length++;
     }
 };
 
