@@ -24,7 +24,7 @@ class LinkedList
     LinkedList(const LinkedList&) = delete;
     LinkedList& operator=(const LinkedList&) = delete;
 
-    explicit LinkedList(T val) : m_head{new Node(val)}, m_tail{m_head}, m_length{1} {};
+    explicit LinkedList(T val) : m_head{new Node{val}}, m_tail{m_head}, m_length{1} {};
 
     LinkedList(std::initializer_list<T> list)
     {
