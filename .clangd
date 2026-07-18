@@ -1,0 +1,16 @@
+CompileFlags:
+  Add:
+    - -xc++
+    - -std=c++17
+    - -Wall
+    - -Wextra
+    - -Wshadow
+    - -Wnon-virtual-dtor
+    - -Wold-style-cast
+    - -Wcast-align
+    - -Wunused
+    - -Woverloaded-virtual
+    - -Wpedantic
+    - -Wconversion
+    - -Wsign-conversion
+    - -Wformat=2
