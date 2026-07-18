@@ -2,6 +2,7 @@
 #define LINKEDLIST_H
 
 #include <initializer_list>
+#include <iostream>
 
 template <typename T>
 class LinkedList
@@ -52,6 +53,32 @@ class LinkedList
             delete temp;
             temp = m_head;
         }
+    }
+
+    int length() const
+    {
+        return m_length;
+    }
+
+    const Node* head() const
+    {
+        return m_head;
+    }
+
+    const Node* tail() const
+    {
+        return m_tail;
+    }
+
+    void print() const
+    {
+        Node* temp{m_head};
+        while (temp)
+        {
+            std::cout << temp->value << ' ';
+            temp = temp->next;
+        }
+        std::cout << '\n';
     }
 };
 
