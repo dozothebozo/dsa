@@ -84,6 +84,36 @@ class LinkedList
         }
         m_length++;
     }
+
+    void pop()
+    {
+        if (!m_head)
+            return;
+
+        if (m_head->next)
+        {
+            Node* temp{m_head};
+            Node* pre{m_head};
+
+            while (temp->next)
+            {
+                pre = temp;
+                temp = temp->next;
+            }
+
+            m_tail = pre;
+            m_tail->next = nullptr;
+            delete temp;
+        }
+        else
+        {
+            delete m_head;
+            m_head = nullptr;
+            m_tail = nullptr;
+        }
+
+        m_length--;
+    }
 };
 
 #endif // !LINKEDLIST_H
