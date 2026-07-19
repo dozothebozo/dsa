@@ -89,7 +89,6 @@ class LinkedList
     {
         if (!m_head)
             return;
-
         if (m_head->next)
         {
             Node* temp{m_head};
@@ -109,7 +108,6 @@ class LinkedList
             m_head = nullptr;
             m_tail = nullptr;
         }
-
         m_length--;
     }
 
@@ -174,25 +172,20 @@ class LinkedList
     {
         if (index < 0 || index > m_length)
             return false;
-
         if (index == 0)
         {
             prepend(val);
             return true;
         }
-
         if (index == m_length)
         {
             append(val);
             return true;
         }
-
         Node* node{new Node{val}};
         Node* temp{get(index - 1)};
-
         node->next = temp->next;
         temp->next = node;
-
         m_length++;
         return true;
     }
@@ -201,16 +194,12 @@ class LinkedList
     {
         if (index < 0 || index >= m_length)
             return;
-
         if (index == 0)
             return deleteHead();
-
         if (index == (m_length - 1))
             return pop();
-
         Node* pre{get(index - 1)};
         Node* temp{pre->next};
-
         pre->next = temp->next;
         delete temp;
         m_length--;
@@ -220,13 +209,10 @@ class LinkedList
     {
         if (!m_head)
             return;
-
         Node* temp{m_head};
         Node* before{};
-
         m_head = m_tail;
         m_tail = temp;
-
         for (int i{0}; i < m_length; ++i)
         {
             Node* after{temp->next};
@@ -234,6 +220,20 @@ class LinkedList
             before = temp;
             temp = after;
         }
+    }
+
+    Node* middleNode()
+    {
+        if (!m_head)
+            return nullptr;
+        Node* slow{m_head};
+        Node* fast{m_head};
+        while (fast && fast != m_tail)
+        {
+            fast = fast->next->next;
+            slow = slow->next;
+        }
+        return slow;
     }
 };
 
