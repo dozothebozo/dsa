@@ -3,6 +3,7 @@
 
 #include <initializer_list>
 #include <iostream>
+#include <type_traits>
 
 template <typename T>
 class LinkedList
@@ -157,6 +158,44 @@ class LinkedList
         for (int i{0}; i < index; ++i)
             temp = temp->next;
         return temp;
+    }
+
+    bool set(int index, T val)
+    {
+        Node* temp{get(index)};
+        if (temp)
+        {
+            temp->value = val;
+            return true;
+        }
+        return false;
+    }
+
+    bool insert(int index, T val)
+    {
+        if (index < 0 || index > m_length)
+            return false;
+
+        if (index == 0)
+        {
+            prepend(val);
+            return true;
+        }
+
+        if (index == m_length)
+        {
+            append(val);
+            return true;
+        }
+
+        Node* node{new Node{val}};
+        Node* temp{get(index - 1)};
+
+        node->next = temp->next;
+        temp->next = node;
+
+        m_length++;
+        return true;
     }
 };
 
