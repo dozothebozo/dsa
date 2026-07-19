@@ -3,7 +3,6 @@
 
 #include <initializer_list>
 #include <iostream>
-#include <type_traits>
 
 template <typename T>
 class LinkedList
@@ -196,6 +195,45 @@ class LinkedList
 
         m_length++;
         return true;
+    }
+
+    void remove(int index)
+    {
+        if (index < 0 || index >= m_length)
+            return;
+
+        if (index == 0)
+            return deleteHead();
+
+        if (index == (m_length - 1))
+            return pop();
+
+        Node* pre{get(index - 1)};
+        Node* temp{pre->next};
+
+        pre->next = temp->next;
+        delete temp;
+        m_length--;
+    }
+
+    void reverse()
+    {
+        if (!m_head)
+            return;
+
+        Node* temp{m_head};
+        Node* before{};
+
+        m_head = m_tail;
+        m_tail = temp;
+
+        for (int i{0}; i < m_length; ++i)
+        {
+            Node* after{temp->next};
+            temp->next = before;
+            before = temp;
+            temp = after;
+        }
     }
 };
 
