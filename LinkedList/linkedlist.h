@@ -128,6 +128,36 @@ class LinkedList
         }
         m_length++;
     }
+
+    void deleteHead()
+    {
+        if (!m_head)
+            return;
+
+        if (m_head->next)
+        {
+            Node* temp{m_head};
+            m_head = m_head->next;
+            delete temp;
+        }
+        else
+        {
+            delete m_head;
+            m_head = nullptr;
+            m_tail = nullptr;
+        }
+        m_length--;
+    }
+
+    Node* get(int index)
+    {
+        if (index < 0 || index >= m_length)
+            return nullptr;
+        Node* temp{m_head};
+        for (int i{0}; i < index; ++i)
+            temp = temp->next;
+        return temp;
+    }
 };
 
-#endif // !LINKEDLIST_H
+#endif // LINKEDLIST_H
