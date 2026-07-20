@@ -222,7 +222,7 @@ class LinkedList
         }
     }
 
-    Node* middleNode()
+    const Node* middleNode() const
     {
         if (!m_head)
             return nullptr;
@@ -234,6 +234,22 @@ class LinkedList
             slow = slow->next;
         }
         return slow;
+    }
+
+    bool hasLoop() const
+    {
+        if (!m_head)
+            return false;
+        Node* slow{m_head};
+        Node* fast{m_head};
+        while (fast && fast->next)
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+            if (fast == slow)
+                return true;
+        }
+        return false;
     }
 };
 
