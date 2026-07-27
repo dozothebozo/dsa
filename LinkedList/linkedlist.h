@@ -251,6 +251,26 @@ class LinkedList
         }
         return false;
     }
+
+    const Node* findKthFromEnd(int k) const
+    {
+        if (!m_head)
+            return nullptr;
+        Node* slow{m_head};
+        Node* fast{m_head};
+        for (int i{0}; i < k; ++i)
+        {
+            if (!fast)
+                return nullptr;
+            fast = fast->next;
+        }
+        while (fast)
+        {
+            slow = slow->next;
+            fast = fast->next;
+        }
+        return slow;
+    }
 };
 
 #endif // LINKEDLIST_H
