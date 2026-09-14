@@ -226,6 +226,22 @@ class DoublyLinkedList
         delete temp;
         m_length--;
     }
+
+    bool isPalindrome() const
+    {
+        if (m_length <= 1)
+            return true;
+        Node* forward{m_head};
+        Node* backward{m_tail};
+        for (int i{0}; i < m_length / 2; ++i)
+        {
+            if (forward->value != backward->value)
+                return false;
+            forward = forward->next;
+            backward = backward->prev;
+        }
+        return true;
+    }
 };
 
 #endif // !DOUBLYLINKEDLIST_H
